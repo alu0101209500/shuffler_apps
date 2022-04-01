@@ -22,7 +22,7 @@ class PythonPlayground(AppBase):
         super().__init__(redis, logger, console_logger)
 
     def send_mail(self, json_data): 
-	params = json.loads(json_data)
+	params = json_data
 	if("sender_email" not in params or "sender_password" not in params or "msg" not in params or "dest_email" not in params or "subject" not in params): 
 		return "ERROR: Missing required fields"
 
@@ -70,9 +70,7 @@ Subject: {2}
 
         # These are functions
         switcher = {
-            "function_1" : self.run_me_1,
-            "function_2" : self.run_me_2,
-            "function_3" : self.run_me_3,
+            "Send_Mail" : self.send_mail
         }
 
         func = switcher.get(function_to_execute, lambda: "Invalid function")
