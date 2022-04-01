@@ -2,8 +2,9 @@ app_version: 1.0.0
 name: Secuora email test 
 description: Prueba de envío de correos por smtp
 contact_info:
-  name: "@-"
+  name: "@frikkylikeme"
   url: https://shuffler.io
+  email: frikky@shuffler.io
 tags:
   - Testing 
 categories:
