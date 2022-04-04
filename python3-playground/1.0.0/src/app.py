@@ -22,35 +22,6 @@ class PythonPlayground(AppBase):
         super().__init__(redis, logger, console_logger)
 
     def send_mail(self, json_data): 
-	params = json_data
-	if("sender_email" not in params or "sender_password" not in params or "msg" not in params or "dest_email" not in params or "subject" not in params): 
-		return "ERROR: Missing required fields"
-
-	message = """From: From Person <{0}>
-To: To Person <{1}>
-Subject: {2}
-
-{3}
-"""
-
-	smtp_server = "smtp.gmail.com"
-	port 587
-
-	context = ssl.create_default_context()
-
-	try:
-		server = smtplib.SMTP(smtp_server, port)
-		server.ehlo()
-		server.starttls(context=context)
-		server.ehlo()
-		server.login(params["sender_email"], params["sender_password"])
-		server.sendmail(params["sender_email"], params["dest_email"], message.format(params["sender_email"], params["dest_email"], params["subject"], params["msg"]))
-
-	except Exception as e:
-		return(e)
-	finally:
-		server.quit()
-
         return "Success"
 
     def run_me_2(self, json_data): 
@@ -69,12 +40,7 @@ Subject: {2}
                 return "Couldn't decode json: %s" % e
 
         # These are functions
-        switcher = {
-            "Send_Mail" : self.send_mail
-        }
-
-        func = switcher.get(function_to_execute, lambda: "Invalid function")
-        return func(json_data)
+        return this.send_mail(json_data)
 
 if __name__ == "__main__":
     PythonPlayground.run()
